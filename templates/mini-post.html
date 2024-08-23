@@ -1,0 +1,19 @@
+<div class="col-lg-4 col-md-6 mini-post-container">
+    <div class="tm-post-item">
+        <img src="{{ url_for('static',filename='img/'+mini_post_spec['post_img']) }}" alt="post 1" class="img-fluid cover-image">
+        <h3 class="tm-post-title mb-0">{{mini_post_spec['title']}}</h3>
+        <div class="mini-post-stats">
+            <span><i class="fas fa-eye"></i> {{mini_post_spec['views']}}</span>
+            <span><i class="fas fa-thumbs-up"></i> {{mini_post_spec['likes']}}</span>
+            <span><i class="fas fa-thumbs-down"></i> {{mini_post_spec['dislikes']}}</span>
+            <span><i class="fas fa-comment-alt"></i> {{mini_post_spec['comments_num']}}</span>
+        </div>
+        <div class="media">
+            <div class="mini-post-stats">
+                <p>by <a href="#" c><b>{{mini_post_spec['profile_name']}}</b></a>
+                <em >Published in: {{mini_post_spec['publish_date']}}</em></p>
+            </div>
+        </div>
+        <p class="mini-post-text">{{mini_post_spec['post_description']}}</p>
+    </div>
+</div>
