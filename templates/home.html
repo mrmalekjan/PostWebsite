@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MyChat - Home</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/fontawesome.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/templatemo-style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/home.css') }}" /> 
+</head>
+
+<body id="homePage">
+    <nav class="navbar navbar-expand-xl">
+        <div class="container h-100">
+            <a class="navbar-brand" href="index">
+                    <h1 class="tm-site-title mb-0">MyChat</h1>
+            </a>
+            <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars tm-nav-icon"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto h-100">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index">
+                            <i class="fas fa-tachometer-alt"></i>
+                            Dashboard
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="chat">
+                            <i class="far fa-file-alt"></i>
+                            Chats
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="account-settings">
+                            <i class="far fa-user"></i>
+                            Account Settings
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="site-settings">
+                            <i class="fas fa-cog"></i>
+                            Site Settings
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link d-block" href="logout">
+                            Admin, <b>Logout</b>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+
+    <!-- Latest post Section -->
+    <section class="tm-latest-post">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="tm-section-title mb-0">Latest Posts</h2>
+                </div>
+                {% for i in range(4): %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="tm-post-item">
+                            <img src="{{ url_for('static',filename='img/post-01.jpg') }}" alt="post 1" class="img-fluid cover-image">
+                            <h3 class="tm-post-title mb-0">Post Title 1</h3>
+                            <div class="media">
+                                <div class="media-body">
+                                    <p class="mb-2">by <a href="#" class="tm-notification-link"><b>Jessica</b></a>
+                                    <em class="tm-small">6h ago.</em></p>
+                                </div>
+                            </div>
+                            <p class="tm-post-text mb-0">Brief description of the post content goes here.</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="tm-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="text-white">Copyright &copy; 2018 All rights reserved. Design: <a href="https://templatemo.com" class="tm-footer-link">Template Mo</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/Chart.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/tooplate-scripts.js"></script>
+</body>
+
+</html>

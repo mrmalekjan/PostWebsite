@@ -1,0 +1,77 @@
+.post-container {
+    border-radius: 10px;
+    background-color: #567086;
+    box-shadow: 0 -3px 5px 0 rgba(69, 92, 113, 0.59);
+    -webkit-box-shadow: 0 -3px 5px 0 rgba(69, 92, 113, 0.59);
+    -moz-box-shadow: 0 -3px 5px 0 rgba(69, 92, 113, 0.59);
+    overflow: hidden;
+    width: 100%;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.profile-img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.post-details h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+
+.post-details p {
+    margin: 5px 0 0;
+    color: #ffffff;
+    font-size: 0.85rem;
+}
+
+.post-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.post-footer {
+    padding: 20px;
+}
+
+.post-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+.post-stats span {
+    display: flex;
+    align-items: center;
+}
+
+.post-stats i {
+    margin-right: 5px;
+}
+
+.post-text {
+    color: #ffffff;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.post-text a {
+    color: #f5a623;
+    text-decoration: none;
+}
+
+.post-text a:hover {
+    text-decoration: underline;
+}

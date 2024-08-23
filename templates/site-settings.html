@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Site Settings</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/templatemo-style.css') }}">
+</head>
+
+<body id="siteSettingsPage">
+    <div class="container">
+        <nav class="navbar navbar-expand-xl">
+            <div class="container h-100">
+                <a class="navbar-brand" href="index">
+                    <h1 class="tm-site-title mb-0">MyChat</h1>
+                </a>
+                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fas fa-bars tm-nav-icon"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto h-100">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index">
+                                <i class="fas fa-tachometer-alt"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="chat">
+                                <i class="far fa-file-alt"></i>
+                                Chats
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="site-settings">
+                                <i class="fas fa-cog"></i>
+                                Site Settings
+                            </a>
+                        </li>
+                        <!-- Other menu items -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="row tm-content-row">
+            <div class="col-12 tm-block-col">
+                <div class="tm-bg-primary-dark tm-block tm-block-settings">
+                    <h2 class="tm-block-title">Site Settings</h2>
+                    <form action="#" method="POST" class="tm-settings-form">
+                        <div class="form-group">
+                            <label for="siteName">Site Name</label>
+                            <input type="text" class="form-control" id="siteName" name="site_name" value="MyChat">
+                        </div>
+                        <div class="form-group">
+                            <label for="siteDescription">Site Description</label>
+                            <textarea class="form-control" id="siteDescription" name="site_description" rows="3">A place to chat and connect.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="siteEmail">Admin Email</label>
+                            <input type="email" class="form-control" id="siteEmail" name="admin_email" value="admin@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="siteTheme">Site Theme</label>
+                            <select class="form-control" id="siteTheme" name="site_theme">
+                                <option value="light">Light</option>
+                                <option value="dark">Dark</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <button
+                              type="submit"
+                              class="btn btn-primary btn-block text-uppercase"
+                            >
+                              Save Settings
+                            </button>
+                          </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="tm-footer row tm-mt-small">
+        <div class="col-12 font-weight-light">
+            <p class="text-center text-white mb-0 px-4 small">
+                Copyright &copy; <b>2018</b> All rights reserved.
+                Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/tooplate-scripts.js"></script>
+</body>
+
+</html>
