@@ -8,6 +8,7 @@
     width: 100%;
     margin: 10px 5px;
     max-width: 350px;
+    cursor: pointer;
 }
 
 .mini-post-header {
