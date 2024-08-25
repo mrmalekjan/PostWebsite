@@ -36,17 +36,30 @@ def home_alter():
 
 @app.route('/home')
 def home():
-    mini_post_specs=[{'views':1000,'likes':20,'dislikes':10,'comments_num':5,'post_img':"post-01.jpg",'profile_pic':"notification-01.jpg",'post_description': "This is a bird. i saw it in my  way to work, today!", 'profile_name': 'Janice','publish_date': "June 2, 2018 19:PM"},
-                {'views':1500,'likes':10,'dislikes':1,'comments_num':2,'post_img':"post-02.jpg",'profile_pic':"notification-02.jpg", 'post_description': "This is something", 'profile_name': 'Emma','publish_date': "July 28, 2018 18:PM"},
-                {'views':800,'likes':25,'dislikes':50,'comments_num':1,'post_img':"post-03.jpg",'profile_pic':"notification-03.jpg", 'post_description': "This is something", 'profile_name': 'Janice','publish_date': "June 2, 2018 19:PM"},
-                {'views':10200,'likes':204,'dislikes':110,'comments_num':5,'post_img':"post-04.jpg",'profile_pic':"notification-04.jpg",'post_description': "This is something. i saw it in my  way to work, today!", 'profile_name': 'Ali','publish_date': "June 2, 2024 20:PM"}]
+    mini_post_specs=[{'post_id':102,'views':1000,'likes':20,'dislikes':10,'comments_num':5,'post_img':"post-01.jpg",'profile_pic':"notification-01.jpg",'post_description': "This is a bird. i saw it in my  way to work, today!", 'profile_name': 'Janice','publish_date': "June 2, 2018 19:PM"},
+                {'post_id':82,'views':1500,'likes':10,'dislikes':1,'comments_num':2,'post_img':"post-02.jpg",'profile_pic':"notification-02.jpg", 'post_description': "This is something", 'profile_name': 'Emma','publish_date': "July 28, 2018 18:PM"},
+                {'post_id':33,'views':800,'likes':25,'dislikes':50,'comments_num':1,'post_img':"post-03.jpg",'profile_pic':"notification-03.jpg", 'post_description': "This is something", 'profile_name': 'Janice','publish_date': "June 2, 2018 19:PM"},
+                {'post_id':122,'views':10200,'likes':204,'dislikes':110,'comments_num':5,'post_img':"post-04.jpg",'profile_pic':"notification-04.jpg",'post_description': "This is something. i saw it in my  way to work, today!", 'profile_name': 'Ali','publish_date': "June 2, 2024 20:PM"}]
     
     return render_template('home.html', mini_post_specs=mini_post_specs)
 
 @app.route('/post')
 def post():
-    post_specs=[{'views':1000,'likes':20,'dislikes':10,'comments_num':5,'post_img':"post-01.jpg",'profile_pic':"notification-01.jpg"}]
-    return render_template('post.html',post_spec=post_specs[0])
+    post_specs=[{'post_id':102,'views':1000,'likes':20,'dislikes':10,'comments_num':5,'post_img':"post-01.jpg",'profile_pic':"notification-01.jpg",'post_description': "This is a bird. i saw it in my  way to work, today!", 'profile_name': 'Janice','publish_date': "June 2, 2018 19:PM"},
+                {'post_id':82,'views':1500,'likes':10,'dislikes':1,'comments_num':2,'post_img':"post-02.jpg",'profile_pic':"notification-02.jpg", 'post_description': "This is something", 'profile_name': 'Emma','publish_date': "July 28, 2018 18:PM"},
+                {'post_id':33,'views':800,'likes':25,'dislikes':50,'comments_num':1,'post_img':"post-03.jpg",'profile_pic':"notification-03.jpg", 'post_description': "This is something", 'profile_name': 'Janice','publish_date': "June 2, 2018 19:PM"},
+                {'post_id':122,'views':10200,'likes':204,'dislikes':110,'comments_num':5,'post_img':"post-04.jpg",'profile_pic':"notification-04.jpg",'post_description': "This is something. i saw it in my  way to work, today!", 'profile_name': 'Ali','publish_date': "June 2, 2024 20:PM"}]
+    comments=[{'author':'Janice','text':'aslkcniqnpqnqpnqi'}, {'author':'Ali','text':'bdfbdfvdfvsdvaslkcniqnpqnqpnqi'}]
+    
+    post_id = request.args.get('post_id')
+    for post in post_specs:
+        if int(post['post_id']) == int(post_id):
+            post_spec = post
+    return render_template('post.html', post_spec=post_spec, comments=comments)
+
+def find_post_by_id(posts, post_id):
+    
+    return None
 
 @app.route('/chats-list')
 def chats_list():

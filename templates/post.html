@@ -1,23 +1,141 @@
-<div class="post-container">
-    <div class="post-header">
-        <img src="{{ url_for('static',filename='img/'+post_spec['profile_pic']) }}" alt="profile picture" class="profile-img">
-        <div class="post-details">
-            <h3>{{post_spec['profile_name']}}</h3>
-            <p>Published in: {{post_spec['publish_date']}}</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MyChat - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/post.css') }}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/fontawesome.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/templatemo-style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/home.css') }}" /> 
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/comment-section.css') }}" />
+</head>
+
+<body id="homePage">
+    <nav class="navbar navbar-expand-xl">
+        <div class="container h-100">
+            <a class="navbar-brand" href="index">
+                    <h1 class="tm-site-title mb-0">MyChat</h1>
+            </a>
+            <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars tm-nav-icon"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto h-100">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index">
+                            <i class="fas fa-tachometer-alt"></i>
+                            Dashboard
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="chat">
+                            <i class="far fa-file-alt"></i>
+                            Chats
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="account-settings">
+                            <i class="far fa-user"></i>
+                            Account Settings
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="site-settings">
+                            <i class="fas fa-cog"></i>
+                            Site Settings
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link d-block" href="logout">
+                            Admin, <b>Logout</b>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+
+    <!-- Latest post Section -->
+    <div class="container">
+        <div class="post-container">
+            <div class="post-header">
+                <img src="{{ url_for('static',filename='img/'+post_spec['profile_pic']) }}" alt="profile picture" class="profile-img">
+                <div class="post-details">
+                    <h3>{{post_spec['profile_name']}}</h3>
+                    <p>Published in: {{post_spec['publish_date']}}</p>
+                </div>
+            </div>
+            <div class="post-image">
+                <img src="{{ url_for('static',filename='img/'+post_spec['post_img']) }}" alt="post image">
+            </div>
+            <div class="post-footer">
+                <div class="post-stats">
+                    <span><i class="fas fa-eye"></i> {{post_spec['views']}}</span>
+                    <span><i class="fas fa-thumbs-up"></i> {{post_spec['likes']}}</span>
+                    <span><i class="fas fa-thumbs-down"></i> {{post_spec['dislikes']}}</span>
+                    <span><i class="fas fa-comment-alt"></i> {{post_spec['comments_num']}}</span>
+                </div>
+                <p class="post-text">
+                    {{post_spec['post_description']}}
+                </p>
+            </div>
+        </div>
+
+        <div class="comment-section-container">
+            <h3 class="comment-section-title">Comments</h3>
+            <div id="comments-list">
+                {% for comment in comments %}
+                    <div class="comment">
+                        <p><strong>{{ comment['author'] }}:</strong> {{ comment['text'] }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <form action="#" method="POST" id="comment-form">
+                <input type="hidden" name="post_id" value="{{ post_spec['post_id'] }}">
+                <div class="form-group">
+                    <label for="text">Comment:</label>
+                    <textarea name="text" id="text" class="form-control" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Comment</button>
+            </form>
         </div>
     </div>
-    <div class="post-image">
-        <img src="{{ url_for('static',filename='img/'+post_spec['post_img']) }}" alt="post image">
-    </div>
-    <div class="post-footer">
-        <div class="post-stats">
-            <span><i class="fas fa-eye"></i> {{post_spec['views']}}</span>
-            <span><i class="fas fa-thumbs-up"></i> {{post_spec['likes']}}</span>
-            <span><i class="fas fa-thumbs-down"></i> {{post_spec['dislikes']}}</span>
-            <span><i class="fas fa-comment-alt"></i> {{post_spec['comments_num']}}</span>
+
+
+    <!-- Footer -->
+    <footer class="tm-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="text-white">Copyright &copy; 2018 All rights reserved. Design: <a href="https://templatemo.com" class="tm-footer-link">Template Mo</a></p>
+                </div>
+            </div>
         </div>
-        <p class="post-text">
-            {{post_spec['post_description']}}
-        </p>
-    </div>
-</div>
+    </footer>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/Chart.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/tooplate-scripts.js"></script>
+    <script> 
+        $(function(){
+          $("#includePost").load("post.html"); 
+        });
+    </script> 
+</body>
+
+</html>

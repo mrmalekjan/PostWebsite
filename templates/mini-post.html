@@ -1,4 +1,4 @@
-<div class="col-lg-4 col-md-6 mini-post-container">
+<div onclick="handlePostClick('{{ mini_post_spec['post_id'] }}')" class="col-lg-4 col-md-6 mini-post-container">
     <div class="tm-post-item">
         <img src="{{ url_for('static',filename='img/'+mini_post_spec['post_img']) }}" alt="post 1" class="img-fluid cover-image">
         <h3 class="tm-post-title mb-0">{{mini_post_spec['title']}}</h3>
