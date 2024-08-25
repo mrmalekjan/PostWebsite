@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ profile_name }} - Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/fontawesome.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/templatemo-style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+</head>
+<body>
+    {% include 'top-nav-bar.html' %}
+
+    <div class="profile-container">
+        <div class="cover-photo">
+            <img src="{{ url_for('static', filename='img/' + cover_photo) }}" alt="Cover Photo">
+        </div>
+        <div class="profile-photo">
+            <img src="{{ url_for('static', filename='img/' + profile_pic) }}" alt="Profile Photo">
+        </div>
+        <div class="profile-info">
+            <h1 class="profile-name-style">{{ profile_name }}</h1>
+            <p>{{ bio }}</p>
+            <div class="profile-stats">
+                <span><b>{{ post_count }}</b> Posts</span>
+                <span><b>{{ followers_count }}</b> Followers</span>
+                <span><b>{{ following_count }}</b> Following</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2 >Posts by {{ profile_name }}</h2>
+        <div class="post-grid">
+            {% for post in user_posts %}
+                <div class="post-card">
+                    <img src="{{ url_for('static', filename='img/' + post['post_img']) }}" alt="Post Image">
+                    <div class="post-info">
+                        <h3>{{ post['title'] }}</h3>
+                        <p>{{ post['post_description'] }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <footer class="tm-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="text-white">Copyright &copy; 2018 All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</body>
+</html>

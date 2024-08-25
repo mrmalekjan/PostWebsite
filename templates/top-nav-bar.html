@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-xl">
+    <div class="container h-100">
+        <a class="navbar-brand" href="home">
+                <img class="home-icon" src="{{ url_for('static', filename='img/logo.png') }}"></img>
+        </a>
+        <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars tm-nav-icon"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto h-100">
+                <li class="nav-item">
+                    <a class="nav-link active" href="home">
+                        <i class="fas fa-home"></i>
+                        Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+
+                {% if user_authorized == True: %}
+                <li class="nav-item">
+                    <a class="nav-link" href="login">
+                        <i class="far fa-user"></i>
+                        Account Settings
+                    </a>
+                </li>
+                {% endif %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="site-settings">
+                        <i class="fas fa-cog"></i>
+                        Site Settings
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    {% if user_authorized == True: %}
+                    <a class="nav-link d-block" href="logout">
+                        {{username}}, <b>Logout</b>
+                    </a>
+                    {% else: %}
+                    <!--a class="nav-link d-block" href="login">
+                        <b>Login</b>
+                    </a-->
+                    <a class="btn btn-primary login-btn" href="login">
+                        <i class="fas fa-sign-in-alt"></i> <b>Login</b>
+                    </a>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<script>
+function redirectToPage(pageAddress) {
+    window.location.href = "home";
+}
+</script>
