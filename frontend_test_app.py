@@ -24,11 +24,14 @@ def signup():
 @app.route("/")
 @app.route('/home')
 def home():
-    mini_post_specs=[{'post_id':102,'views':1000,'likes':20,'dislikes':10,'comments_num':5,'post_img':"post-01.jpg",'profile_pic':"notification-01.jpg",'post_description': "This is a bird. i saw it in my  way to work, today!", 'profile_name': 'Janice','publish_date': "June 2, 2018 19:PM"},
-                {'post_id':82,'views':1500,'likes':10,'dislikes':1,'comments_num':2,'post_img':"post-02.jpg",'profile_pic':"notification-02.jpg", 'post_description': "This is something", 'profile_name': 'Emma','publish_date': "July 28, 2018 18:PM"},
-                {'post_id':33,'views':800,'likes':25,'dislikes':50,'comments_num':1,'post_img':"post-03.jpg",'profile_pic':"notification-03.jpg", 'post_description': "This is something", 'profile_name': 'Janice','publish_date': "June 2, 2018 19:PM"},
-                {'post_id':122,'views':10200,'likes':204,'dislikes':110,'comments_num':5,'post_img':"post-04.jpg",'profile_pic':"notification-04.jpg",'post_description': "This is something. i saw it in my  way to work, today!", 'profile_name': 'Ali','publish_date': "June 2, 2024 20:PM"}]
-    return render_template('home.html', user="", mini_post_specs=mini_post_specs)
+    username="mammad"
+    posts=[{"title":"ssssss", "id":1, "user":{"username":"ali"}, 'image':'static/uploads/360_F_461470323_6TMQSkCCs9XQoTtyer8VCsFypxwRiDGU.jpg'}]
+    return render_template("home.html",user = username,posts=posts)
+
+@app.route('/post/<int:post_id>')
+def detail_post(post_id):
+    post = ""
+    return render_template('post_detail.html', post=post)
 
 @app.route('/post')
 def post():
@@ -67,7 +70,7 @@ def profile():
 
 @app.route('/post-create')
 def post_create():
-    return render_template("post-create.html")
+    return render_template("post-create.html", user="")
 
 
 app.run(host='0.0.0.0', port=15000)
