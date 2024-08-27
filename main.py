@@ -127,9 +127,12 @@ def create_post():
 @app.route("/all_posts")
 def show_all_posts() :
 
-    posts = Post.query.all()
-
-    return render_template("all_post.html",posts = posts)
+    if "username" in session :
+        username = session['username']
+        posts = Post.query.all()
+    else :
+        return redirect(url_for("login"))
+    return render_template("all_post.html",user = username,posts = posts)
 
 
 @app.route('/post/<int:post_id>')
@@ -145,9 +148,10 @@ def home():
     if "username" in session :
 
         username = session['username']
+        user_id = session['user_id']
         posts = Post.query.all()
 
-        return render_template("home.html",user = username,posts=posts)
+        return render_template("home.html",user_id= user_id,user = username,posts=posts)
 
 
     else :
