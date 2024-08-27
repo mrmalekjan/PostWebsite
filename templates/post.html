@@ -54,7 +54,7 @@
                 {% endfor %}
             </div>
 
-            {% if user_authorized == True: %}
+            {% if user.is_authenticated == True: %}
                 <form action="#" method="POST" id="comment-form">
                     <input type="hidden" name="post_id" value="{{ post_spec['post_id'] }}">
                     <div class="form-group">
