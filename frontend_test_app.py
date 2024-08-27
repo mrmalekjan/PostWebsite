@@ -61,5 +61,9 @@ def profile():
                             user_posts=user_posts)
 
 
+@app.route('/post-create')
+def post_create():
+    return render_template("post-create.html")
+
 
 app.run(host='0.0.0.0', port=35000)
