@@ -95,14 +95,15 @@ def create_tables():
 
 @app.route('/create_post', methods=['GET', 'POST'])
 def create_post():
-
+    if "username" not in session :
+        return redirect(url_for('login'))
     if "user_id" not in session :
         return redirect(url_for('login'))
 
-    if request.method == 'POST':
-        title = request.form['title']
-        content = request.form['content']
-        image = request.files.get('image')  # Get the image from the form
+    if request.method == 'POST' and "post_submit" in request.form:
+        title = request.form['post_title']
+        content = request.form['post_description']
+        image = request.files.get('post_img')  # Get the image from the form
         user_id = session.get('user_id')
 
         if not user_id:
@@ -120,9 +121,10 @@ def create_post():
         db.session.add(new_post)
         db.session.commit()
 
+        flash("post created successfully")
         return redirect(url_for('home'))
 
-    return render_template('post_form.html')
+    return render_template('post-create.html')
 
 @app.route("/all_posts")
 def show_all_posts() :
