@@ -77,3 +77,15 @@
 .post-text a:hover {
     text-decoration: underline;
 }
+
+.post-create-container{
+    border-radius: 10px;
+    background-color: #567086;
+    box-shadow: 0 -3px 5px 0 rgba(69, 92, 113, 0.59);
+    -webkit-box-shadow: 0 -3px 5px 0 rgba(69, 92, 113, 0.59);
+    -moz-box-shadow: 0 -3px 5px 0 rgba(69, 92, 113, 0.59);
+    overflow: hidden;
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px;
+}
