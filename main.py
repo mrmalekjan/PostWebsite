@@ -227,7 +227,7 @@ def logout(pk) :
 
         return redirect(url_for("login"))
     
-    user = User.query.filter_by(id=pk)
+    user = User.query.get_or_404(pk)
     user.set_auth_false()
 
     session.pop("username",None)
