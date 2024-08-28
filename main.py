@@ -137,14 +137,28 @@ def show_all_posts() :
     return render_template("all_post.html",user = username,posts = posts)
 
 
-@app.route('/post/<int:post_id>')
+@app.route('/post/<int:post_id>', methods = ['POST' , 'GET'])
 def detail_post(post_id):
+
     post = Post.query.get_or_404(post_id)
     if "user_id" in session:
         user= User.query.get_or_404(session['user_id'])
+        user_id = session.get("user_id")
     else:
         user=""
-    return render_template('post.html', user=user, post=post)
+
+    if request.method == "POST" and "comment_submit" in request.form:
+        comment = request.form['comment']
+        new_comment = Comment(content = comment , post_id = post_id , user_id =user_id )
+        db.session.add(new_comment)
+        db.session.commit()
+        return redirect(url_for('detail_post',post_id = post_id))
+
+
+    comments = Comment.query.filter_by(post_id = post_id)
+
+    return render_template('post.html', user=user, post=post,comments = comments)
+
 
 
 @app.route("/")

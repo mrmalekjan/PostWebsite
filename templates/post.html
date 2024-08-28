@@ -49,19 +49,19 @@
             <div id="comments-list">
                 {% for comment in comments %}
                     <div class="comment">
-                        <p><strong>{{ comment['author'] }}:</strong> {{ comment['text'] }}</p>
+                        <p><strong>{{ comment.user.username }}:</strong> {{ comment.content }}</p>
                     </div>
                 {% endfor %}
             </div>
 
             {% if not user == "": %}
-                <form action="#" method="POST" id="comment-form">
+                <form method="POST" id="comment-form">
                     <input type="hidden" name="post_id" value="">
                     <div class="form-group">
                         <label for="text">Comment:</label>
-                        <textarea name="text" id="text" class="form-control" rows="4" required></textarea>
+                        <textarea name="comment" name="text" id="text" class="form-control" rows="4" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit Comment</button>
+                    <button name="comment_submit" type="submit" class="btn btn-primary">Submit Comment</button>
                 </form>
             {% endif %}
         </div>
