@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ profile_name }} - Profile</title>
+    <title>{{ user.username }} - Profile</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='css/fontawesome.min.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static',filename='css/templatemo-style.css') }}">
@@ -22,7 +22,7 @@
             <img src="{{ url_for('static', filename='img/' + profile_pic) }}" alt="Profile Photo">
         </div>
         <div class="profile-info">
-            <h1 class="profile-name-style">{{ profile_name }}</h1>
+            <h1 class="profile-name-style">{{  user.username }}</h1>
             <p>{{ bio }}</p>
             <div class="profile-stats">
                 <span><b>{{ post_count }}</b> Posts</span>
@@ -37,7 +37,7 @@
         <div class="post-grid">
             {% for post in user_posts %}
                 <div class="post-card">
-                    <img src="{{ url_for('static', filename='img/' + post['post_img']) }}" alt="Post Image">
+                    <img src="{{post.image}}" alt="Post Image">
                     <div class="post-info">
                         <h3>{{ post['title'] }}</h3>
                         <p>{{ post['post_description'] }}</p>

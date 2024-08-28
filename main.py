@@ -244,6 +244,19 @@ def signup() :
     else : 
         return render_template("signup.html")
 
+@app.route("/profile")
+def profile() :
+    if "username" not in session :
+        flash("you need to login first")
+
+        return redirect(url_for('login'))
+    else :
+        user_id = session["user_id"]
+        user = User.query.filter_by(id = user_id)
+        user_post = Post.query.filter_by(user_id = user_id)
+
+        return render_template("profile.html" , user = user , user_posts = user_post)
+
 
 @app.route("/logout/<pk>")
 def logout(pk) :
