@@ -124,7 +124,7 @@ def create_post():
         flash("post created successfully")
         return redirect(url_for('home'))
 
-    return render_template('post-create.html')
+    return render_template('post-create.html',user=session['username'], user_id = session['user_id'])
 
 @app.route("/all_posts")
 def show_all_posts() :
@@ -140,11 +140,7 @@ def show_all_posts() :
 @app.route('/post/<int:post_id>')
 def detail_post(post_id):
     post = Post.query.get_or_404(post_id)
-    if "user_id" in session:
-        user= User.query.get_or_404(session['user_id'])
-    else:
-        user=""
-    return render_template('post.html', user=user, post=post)
+    return render_template('post.html', user=session['username'], user_id = session['user_id'], post=post)
 
 
 @app.route("/")
