@@ -155,7 +155,7 @@ def home():
 
 
     else :
-        flash("please log in")
+        flash("Please Login!")
         return redirect(url_for("login"))
 
 
@@ -163,7 +163,7 @@ def home():
 def login () :
 
     if "username" in session:
-        flash("You are already logged in")
+        flash("You Are Already Logged In!")
         return redirect(url_for("home"))
 
     if request.method == "POST" and "sign_in" in request.form:

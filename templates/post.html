@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='css/comment-section.css') }}" />
 </head>
 
-<body id="homePage">
+<body id="homePage" style="padding-top: 90px;">
     {% include 'top-nav-bar.html' %}
 
     <!-- Latest post Section -->
@@ -54,9 +54,9 @@
                 {% endfor %}
             </div>
 
-            {% if user.is_authenticated == True: %}
+            {% if not user == "": %}
                 <form action="#" method="POST" id="comment-form">
-                    <input type="hidden" name="post_id" value="{{ post_spec['post_id'] }}">
+                    <input type="hidden" name="post_id" value="">
                     <div class="form-group">
                         <label for="text">Comment:</label>
                         <textarea name="text" id="text" class="form-control" rows="4" required></textarea>

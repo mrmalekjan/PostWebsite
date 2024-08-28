@@ -67,6 +67,8 @@
     color: #ffffff;
     font-size: 0.95rem;
     line-height: 1.6;
+    white-space: normal;
+    overflow-wrap: break-word;
 }
 
 .post-text a {
