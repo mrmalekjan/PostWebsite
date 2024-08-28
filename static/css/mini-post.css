@@ -42,6 +42,9 @@
 }
 
 .mini-post-text {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
     color: #ffffff;
     font-size: 0.95rem;
     line-height: 1.6;

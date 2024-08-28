@@ -22,24 +22,24 @@
     <div class="container">
         <div class="post-container">
             <div class="post-header">
-                <img src="{{ url_for('static',filename='img/'+post_spec['profile_pic']) }}" alt="profile picture" class="profile-img">
+                <!--img src="" alt="profile picture" class="profile-img" -->
                 <div class="post-details">
-                    <h3>{{post_spec['profile_name']}}</h3>
-                    <!--p>Published in: {{post_spec['publish_date']}}</p-->
+                    <!--h3>PROFILE NAME</h3-->
+                    <!--p>Published in: publish_date</p-->
                 </div>
             </div>
             <div class="post-image">
-                <img src="{{ url_for('static',filename='img/'+post_spec['post_img']) }}" alt="post image">
+                <img src="{{post.image}}" alt="post image">
             </div>
             <div class="post-footer">
                 <div class="post-stats">
-                    <!--span><i class="fas fa-eye"></i> {{post_spec['views']}}</span>
-                    <span><i class="fas fa-thumbs-up"></i> {{post_spec['likes']}}</span>
-                    <span><i class="fas fa-thumbs-down"></i> {{post_spec['dislikes']}}</span>
-                    <span><i class="fas fa-comment-alt"></i> {{post_spec['comments_num']}}</span-->
+                    <!--span><i class="fas fa-eye"></i>views</span>
+                    <span><i class="fas fa-thumbs-up"></i>likes</span>
+                    <span><i class="fas fa-thumbs-down"></i>dislikes</span>
+                    <span><i class="fas fa-comment-alt"></i>comments_num</span-->
                 </div>
                 <p class="post-text">
-                    {{post_spec['post_description']}}
+                    {{post.content}}
                 </p>
             </div>
         </div>

@@ -72,3 +72,11 @@
             window.location.href = '/post?post_id=' + postId;
         }
 </script>
+<script>
+    const paragraph = document.getElementById('myParagraph');
+    const text = paragraph.textContent;
+  
+    if (text.length > 20) {
+      paragraph.textContent = text.substring(0, 20) + '...';
+    }
+  </script>
