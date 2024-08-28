@@ -9,9 +9,13 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
     />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/post.css') }}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/fontawesome.min.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/templatemo-style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/templatemo-style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/home.css') }}" /> 
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/comment-section.css') }}" />
   </head>
 
   <body>
@@ -19,7 +23,7 @@
       <nav class="navbar navbar-expand-xl">
         <div class="container h-100">
           <a class="navbar-brand" href="home">
-            <h1 class="tm-site-title mb-0">MyWebsite</h1>
+            <img class="home-icon" src="{{ url_for('static', filename='img/logo.png') }}"></img>
           </a>
           <button
             class="navbar-toggler ml-auto mr-0"
@@ -35,18 +39,6 @@
           
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto h-100">
-              <li class="nav-item">
-                <a class="nav-link" href="home">
-                    <i class="fas fa-home"></i>
-                    Home
-                </a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="site-settings">
-                      <i class="fas fa-cog"></i>
-                      Site Settings
-                  </a>
-              </li>
             </ul>
           </div>
         </div>
