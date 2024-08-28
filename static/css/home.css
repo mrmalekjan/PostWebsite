@@ -101,3 +101,30 @@ img.cover-image {
     visibility: hidden;
 }
 
+.custom-alert {
+    font-weight: bold;
+    background-color: #567086;
+    color: white;
+    font-size: 20px; 
+    border: 1px solid #567086;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 1s ease-in-out; /* Controls the fading effect */
+}
+
+.custom-alert .flashes {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.custom-alert .flashes li {
+    margin: 5px 0;
+}
+
+.custom-alert.fade-out {
+    opacity: 0;
+}
