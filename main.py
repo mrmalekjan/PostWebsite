@@ -141,7 +141,7 @@ def show_all_posts() :
 def detail_post(post_id):
 
     post = Post.query.get_or_404(post_id)
-    return render_template('post.html', user=session['username'], user_id = session['user_id'], post=post)
+    
     if "user_id" in session:
         user= User.query.get_or_404(session['user_id'])
         user_id = session.get("user_id")
@@ -158,8 +158,8 @@ def detail_post(post_id):
 
     comments = Comment.query.filter_by(post_id = post_id)
 
-    return render_template('post.html', user=user, post=post,comments = comments)
-
+    #return render_template('post.html', user=user, post=post,comments = comments)
+    return render_template('post.html', user=session['username'], user_id = session['user_id'], post=post,comments = comments)
 
 
 @app.route("/")
@@ -236,7 +236,7 @@ def signup() :
         db.session.commit()
         
         session["username"] = username
-        session["password"] = password
+        session["user_id"] = new_user.id
         new_user.set_auth_true()
 
         flash(F"congratulations your account has been created User : {username}")
@@ -256,6 +256,8 @@ def logout(pk) :
     user.set_auth_false()
 
     session.pop("username",None)
+    session.pop("user_id",None)
+
     flash("You have been logged out","info")
     return redirect(url_for("login"))
 

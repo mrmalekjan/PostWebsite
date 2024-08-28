@@ -53,6 +53,18 @@
       </nav>
     </div>
 
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="custom-alert">
+        <ul class="flashes">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        </div>
+    {% endif %}
+{% endwith %}
+
     <div class="container tm-mt-big tm-mb-big">
       <div class="row">
         <div class="col-12 mx-auto tm-login-col">
@@ -87,16 +99,7 @@
                       required
                     />
                   </div>
-                  {% with messages = get_flashed_messages() %}
-                  {% if messages %}
-                    <ul class=flashes>
-                    {% for message in messages %}
-                      <li>{{ message }}</li>
-                    {% endfor %}
-                    </ul>
-                  {% endif %}
-                {% endwith %}
-                {% block body %}{% endblock %}
+
                   <div class="form-group mt-4">
                     <button
                       name= "sign_up"
@@ -127,5 +130,19 @@
     </footer>
     <script src="{{ url_for('static',filename='js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const alertBox = document.querySelector('.custom-alert');
+          if (alertBox) {
+              setTimeout(() => {
+                  alertBox.classList.add('fade-out');
+              }, 500);  // Start fading after 5 seconds
+  
+              setTimeout(() => {
+                  alertBox.style.display = 'none';
+              }, 1500);  // Completely hide after 6 seconds (1s fade-out duration)
+          }
+      });
+  </script>
   </body>
 </html>
