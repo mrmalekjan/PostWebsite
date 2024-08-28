@@ -135,7 +135,11 @@ def show_all_posts() :
 @app.route('/post/<int:post_id>')
 def detail_post(post_id):
     post = Post.query.get_or_404(post_id)
-    return render_template('post_detail.html', post=post)
+    if "user_id" in session:
+        user= User.query.get_or_404(session['user_id'])
+    else:
+        user=""
+    return render_template('post.html', user=user, post=post)
 
 
 @app.route("/")
