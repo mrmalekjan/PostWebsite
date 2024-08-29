@@ -288,11 +288,11 @@ def logout(pk) :
 
 @app.route("/delete-post")
 def delete_post():
-    return ""
+    return "Test"
 
 @app.route("/edit-post")
 def edit_post():
-    return ""
+    return "Test"
 
 if __name__ == '__main__':
     app.run(debug=True)

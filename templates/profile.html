@@ -43,8 +43,12 @@
                 <div class="post-card">
                     <img src="{{post.image}}" alt="Post Image">
                     <div class="post-info">
-                        <button href="{{ url_for('delete_post', post_id=post.id) }}">Delete</button>
-                        <button href="{{ url_for('edit_post', post_id=post.id) }}">Edit</button>
+                        <a href="{{ url_for('delete_post', post_id=post.id) }}">
+                            <button>Delete</button>
+                        </a>
+                        <a href="{{ url_for('edit_post', post_id=post.id) }}">
+                            <button >Edit</button>
+                        </a>
                         <h3>{{ post['title'] }}</h3>
                         <p>{{ post['post_description'] }}</p>
                         <div class="post-stats">
@@ -60,15 +64,7 @@
     </div>
     <p style="text-align: center;">{{user_specs.comments|length}}</p>
 
-    <footer class="tm-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <p class="text-white">Copyright &copy; 2018 All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    {% include 'tm-footer.html' %}
 
     <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
