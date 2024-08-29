@@ -170,10 +170,10 @@ def set_language(lang):
 @app.route("/")
 @app.route("/home")
 def home():
-    if "language" in session:
-        lang=session["language"]
-    else:
+    if not "language" in session:
         session["language"] = 'en'
+        
+    lang=session["language"]
 
     if "username" in session :
 
@@ -265,7 +265,7 @@ def profile() :
         user = User.query.filter_by(id = user_id)
         user_post = Post.query.filter_by(user_id = user_id)
 
-        return render_template("profile.html" , user = session['username'], user_specs=user , user_posts = user_post)
+        return render_template("profile.html" , user = session['username'], translations=translations, user_specs=user , user_posts = user_post)
 
 
 @app.route("/logout/<pk>")
@@ -284,8 +284,13 @@ def logout(pk) :
     flash("You have been logged out","info")
     return redirect(url_for("login"))
 
+@app.route("/delete-post")
+def delete_post():
+    return ""
 
-
+@app.route("/edit-post")
+def edit_post():
+    return ""
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
 </head>
 <body>
-    {% include 'top-nav-bar.html' #}
+    {% include 'top-nav-bar.html' %}
 
     <div class="profile-container">
         <!--div class="cover-photo">
@@ -39,9 +39,12 @@
         <h2 >Posts by {{ user }}</h2>
         <div class="post-grid">
             {% for post in user_posts %}
+
                 <div class="post-card">
                     <img src="{{post.image}}" alt="Post Image">
                     <div class="post-info">
+                        <button href="{{ url_for('delete_post', post_id=post.id) }}">Delete</button>
+                        <button href="{{ url_for('edit_post', post_id=post.id) }}">Edit</button>
                         <h3>{{ post['title'] }}</h3>
                         <p>{{ post['post_description'] }}</p>
                         <div class="post-stats">
