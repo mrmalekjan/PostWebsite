@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 from werkzeug.utils import secure_filename
 import secrets
 import os
+from translations import translations
 
 # Initialize Flask app and SQLAlchemy
 app = Flask(__name__)
@@ -161,10 +162,18 @@ def detail_post(post_id):
     #return render_template('post.html', user=user, post=post,comments = comments)
     return render_template('post.html', user=session['username'], user_id = session['user_id'], post=post,comments = comments)
 
+@app.route('/set_language/<lang>')
+def set_language(lang):
+    session['language'] = lang
+    return redirect(request.referrer or url_for('home'))
 
 @app.route("/")
 @app.route("/home")
 def home():
+    if "language" in session:
+        lang=session["language"]
+    else:
+        session["language"] = 'en'
 
     if "username" in session :
 
@@ -172,7 +181,8 @@ def home():
         user_id = session['user_id']
         posts = Post.query.all()
 
-        return render_template("home.html",user_id= user_id,user = username,posts=posts)
+        return render_template("home.html",user_id= user_id,user = username,posts=posts,
+                                translations=translations[lang], lang=lang)
 
 
     else :
@@ -255,7 +265,7 @@ def profile() :
         user = User.query.filter_by(id = user_id)
         user_post = Post.query.filter_by(user_id = user_id)
 
-        return render_template("profile.html" , user = user , user_posts = user_post)
+        return render_template("profile.html" , user = session['username'], user_specs=user , user_posts = user_post)
 
 
 @app.route("/logout/<pk>")
@@ -273,6 +283,7 @@ def logout(pk) :
 
     flash("You have been logged out","info")
     return redirect(url_for("login"))
+
 
 
 

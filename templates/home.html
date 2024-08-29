@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='css/home.css') }}" /> 
     <link rel="stylesheet" href="{{ url_for('static',filename='css/post.css') }}" /> 
     <link rel="stylesheet" href="{{ url_for('static',filename='css/mini-post.css') }}" /> 
+    {% if lang=="fa" %}
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/farsi-specifics.css') }}" /> 
+    {% endif %}
 </head>
 
 <body id="homePage" style="padding-top: 90px;">
@@ -35,7 +38,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h2 class="tm-section-title mb-0">Latest Posts</h2>
+                    <h2 class="tm-section-title mb-0">{{translations['latest_posts']}}</h2>
                 </div>
             </div>
             <div class="row">
@@ -47,15 +50,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="tm-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <p class="text-white">Copyright &copy; 2018 All rights reserved. Design: <a href="https://templatemo.com" class="tm-footer-link">Template Mo</a></p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    {% include 'tm-footer.html' %}
 
 
 </body>

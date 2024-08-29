@@ -13,8 +13,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('home')}}">
                         <i class="fas fa-home"></i>
-                        Home
-                        <span class="sr-only">(current)</span>
+                        {{translations['home']}}
+                        <!--span class="sr-only">(current)</span-->
                     </a>
                 </li>
 
@@ -30,7 +30,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('create_post')}}">
                         <i class="far fa-paper-plane"></i>
-                        Create A Post
+                        {{translations['create_post']}}
                     </a>
                 </li>
 
@@ -40,19 +40,25 @@
                         Site Settings
                     </a>
                 </li-->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('profile')}}">
+                        <i class="fas fa-user-alt"></i>
+                        {{translations['profile']}}
+                    </a>
+                </li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
                     {% if user %}
                     <a class="nav-link d-block" href="{{url_for('logout',pk=user_id)}}">
-                        {{user}}, <b>Logout</b>
+                        {{user}}, <b>{{translations['logout']}}</b>
                     </a>
                     {% else: %}
                     <!--a class="nav-link d-block" href="login">
                         <b>Login</b>
                     </a-->
                     <a class="btn btn-primary login-btn" href="{{url_for('login')}}">
-                        <i class="fas fa-sign-in-alt"></i> <b>Login</b>
+                        <i class="fas fa-sign-in-alt"></i> <b>{{translations['login']}}</b>
                     </a>
                     {% endif %}
                 </li>
