@@ -125,7 +125,8 @@ def create_post():
         flash("post created successfully")
         return redirect(url_for('home'))
 
-    return render_template('post-create.html',user=session['username'], user_id = session['user_id'])
+    return render_template('post-create.html',user=session['username'], user_id = session['user_id'],
+                           translations=translations)
 
 @app.route("/all_posts")
 def show_all_posts() :
@@ -160,7 +161,8 @@ def detail_post(post_id):
     comments = Comment.query.filter_by(post_id = post_id)
 
     #return render_template('post.html', user=user, post=post,comments = comments)
-    return render_template('post.html', user=session['username'], user_id = session['user_id'], post=post,comments = comments)
+    return render_template('post.html', user=session['username'], user_id = session['user_id'], post=post,comments = comments,
+                           translations=translations)
 
 @app.route('/set_language/<lang>')
 def set_language(lang):
