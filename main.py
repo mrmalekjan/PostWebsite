@@ -65,7 +65,7 @@ class Post(db.Model):
 
     user = db.relationship('User', backref=db.backref('user_posts', lazy=True))  # Relationship to User model
     # One-to-many relationship
-    comments = db.relationship('Comment', backref='post', lazy=True)
+    comments = db.relationship('Comment',cascade="all, delete-orphan", backref='post', lazy=True)
 
     def __repr__(self):
         return f'<Post {self.title}>'
@@ -141,7 +141,10 @@ def show_all_posts() :
 
 @app.route('/post/<int:post_id>', methods = ['POST' , 'GET'])
 def detail_post(post_id):
-
+    if "username" not in session:
+        flash("Please Login!")
+        return redirect(url_for("login"))
+    
     post = Post.query.get_or_404(post_id)
     
     if "user_id" in session:
@@ -172,6 +175,10 @@ def set_language(lang):
 @app.route("/")
 @app.route("/home")
 def home():
+    if "username" not in session :
+        flash("Please Login!")
+        return redirect(url_for('login'))
+    
     if not "language" in session:
         session["language"] = 'en'
         
@@ -185,11 +192,6 @@ def home():
 
         return render_template("home.html",user_id= user_id,user = username,posts=posts,
                                 translations=translations[lang], lang=lang)
-
-
-    else :
-        flash("Please Login!")
-        return redirect(url_for("login"))
 
 
 @app.route("/login",methods = ['POST','GET'])
@@ -256,18 +258,21 @@ def signup() :
     else : 
         return render_template("signup.html")
 
-@app.route("/profile")
+@app.route("/profile", methods=['POST' , 'GET'])
 def profile() :
     if "username" not in session :
         flash("you need to login first")
-
         return redirect(url_for('login'))
+    
     else :
         user_id = session["user_id"]
         user = User.query.filter_by(id = user_id)
         user_post = Post.query.filter_by(user_id = user_id)
 
-        return render_template("profile.html" , user = session['username'], translations=translations, user_specs=user , user_posts = user_post)
+
+
+
+    return render_template("profile.html" , user = session['username'], translations=translations, user_specs=user , user_posts = user_post)
 
 
 @app.route("/logout/<pk>")
@@ -286,9 +291,18 @@ def logout(pk) :
     flash("You have been logged out","info")
     return redirect(url_for("login"))
 
-@app.route("/delete-post")
-def delete_post():
-    return "Test"
+@app.route('/post/delete/<int:post_id>', methods=['POST'])
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author.id != session.get('user_id'):
+        flash('You are not authorized to delete this post')
+        return redirect(url_for('profile'))
+
+    db.session.delete(post)
+    db.session.commit()
+    flash('Post deleted successfully!')
+
+    return redirect(url_for('profile'))
 
 @app.route("/edit-post")
 def edit_post():
