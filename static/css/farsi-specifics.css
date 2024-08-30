@@ -1,8 +1,23 @@
 .tm-section-title {
     font-size: 2rem;
+    margin-right: 20px; 
     margin-bottom: 40px;
     padding: 10px;
     color: #fff;
     align-items: right;
     text-align: right;
+    unicode-bidi: isolate;
+    direction: rtl;
+}
+
+.tm-post-item {
+    align-items: right;
+    text-align: right;
+    unicode-bidi: isolate;
+    direction: rtl;
+}
+
+.nav-link {
+    unicode-bidi: isolate;
+    direction: rtl;
 }

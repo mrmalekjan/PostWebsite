@@ -7,6 +7,7 @@ translations = {
         'logout': 'Logout',
         'login': 'Login',
         'latest_posts': 'Latest Posts',
+        'sent_by': 'sent by'
     },
     'fa': {
         'language': 'fa',
@@ -16,5 +17,6 @@ translations = {
         'logout': 'خروج',
         'login': 'ورود',
         'latest_posts': 'جدیدترین پست‌ها',
+        'sent_by': 'ارسال شده توسط'
     }
 }

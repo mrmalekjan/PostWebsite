@@ -126,7 +126,7 @@ def create_post():
         return redirect(url_for('home'))
 
     return render_template('post-create.html',user=session['username'], user_id = session['user_id'],
-                           translations=translations)
+                           translations=translations[session["language"]])
 
 @app.route("/all_posts")
 def show_all_posts() :
@@ -162,7 +162,7 @@ def detail_post(post_id):
 
     #return render_template('post.html', user=user, post=post,comments = comments)
     return render_template('post.html', user=session['username'], user_id = session['user_id'], post=post,comments = comments,
-                           translations=translations)
+                           translations=translations[session["language"]])
 
 @app.route('/set_language/<lang>')
 def set_language(lang):
@@ -267,7 +267,8 @@ def profile() :
         user = User.query.filter_by(id = user_id)
         user_post = Post.query.filter_by(user_id = user_id)
 
-        return render_template("profile.html" , user = session['username'], translations=translations, user_specs=user , user_posts = user_post)
+        return render_template("profile.html" , user = session['username'], translations=translations[session["language"]],
+                                user_specs=user , user_posts = user_post)
 
 
 @app.route("/logout/<pk>")
