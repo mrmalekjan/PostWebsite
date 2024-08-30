@@ -7,7 +7,6 @@ from werkzeug.utils import secure_filename
 import secrets
 import os
 from translations import translations
-
 # Initialize Flask app and SQLAlchemy
 app = Flask(__name__)
 app.secret_key =secrets.token_hex(16)
@@ -21,6 +20,10 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 migrate = Migrate(app, db)
 # User table with one-to-many relationship with Post and Comment
@@ -305,9 +308,51 @@ def delete_post(post_id):
 
     return redirect(url_for('profile'))
 
-@app.route("/edit-post")
-def edit_post():
-    return "Test"
+@app.route('/post/update/<int:post_id>', methods=['GET', 'POST'])
+def update_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    print(post.image)
+    if post.author.id != session.get('user_id'):
+        flash('You are not authorized to update this post')
+        return redirect(url_for('profile'))
 
+    if request.method == 'POST':
+        post.title = request.form['title']
+        post.content = request.form['content']
+
+
+        # if image and image.filename != '':  # Check if an image was uploaded
+        #     filename = secure_filename(image.filename)
+        #     image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        #     image.save(image_path)
+        # else:
+        #     image_path = DEFAULT_IMAGE_PATH  # Use default image if no image was uploaded
+
+
+        # Handle image upload if a new image is provided
+        if 'image' in request.files:
+            file = request.files['image']
+            if file.filename != '':
+                if allowed_file(file.filename):
+                    # Remove the old image file
+                    if post.image:
+                        old_image_path = os.path.join(app.config['UPLOAD_FOLDER'], post.image)
+                        if os.path.exists(old_image_path):
+                            os.remove(old_image_path)
+
+                    # Save the new image and update the path
+                    filename = secure_filename(file.filename)
+                    image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                    file.save(image_path)
+                    post.image = image_path  # Update the image path in the database
+
+        # Commit changes to the database
+        db.session.commit()
+        flash('Post updated successfully!', 'success')
+        return redirect(url_for('detail_post', post_id=post.id))
+
+    return render_template('update_post.html', post=post)
+
+    #return render_template('update_post.html',translations=translations[session["language"]], post=post)
 if __name__ == '__main__':
     app.run(debug=True)

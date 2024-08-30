@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Edit Post</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <!-- Title Field -->
+            <div>
+                <label for="title">Title</label><br>
+                <input type="text" id="title" name="title" value="{{ post.title }}" size="40" required>
+            </div>
+
+            <!-- Content Field -->
+            <div>
+                <label for="content">Content</label><br>
+                <textarea id="content" name="content" cols="40" rows="5" required>{{ post.content }}</textarea>
+            </div>
+
+            <!-- Display current image if it exists -->
+            {% if post.image_file %}
+            <div>
+                <label>Current Image:</label><br>
+                <img src="{{ url_for('static', filename='images/' + post.image_file) }}" alt="Current Image" width="150px">
+            </div>
+            {% endif %}
+
+            <!-- File input for uploading a new image -->
+            <div>
+                <label for="image">Upload New Image</label><br>
+                <input type="file" id="image" name="image" accept="image/*">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit">Update Post</button>
+        </form>
+    </div>
+</body>
+</html>

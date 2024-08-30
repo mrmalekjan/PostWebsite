@@ -51,18 +51,18 @@
             {% for post in user_posts %}
 
                 <div class="post-card">
-                    <img src="{{post.image}}" alt="Post Image">
+                    <img name="post_img" src="{{post.image}}" alt="Post Image">
                     <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST">
                         <div class="post-info">
                             <button name = "post_delete" type="submit">Delete</button>
                     </form>
-                    <form action="{{ url_for('edit_post', post_id=post.id) }}" method="POST">
+                    <form action="{{ url_for('update_post', post_id=post.id) }}" method="GET">
 
                             <button name="edit_post" type="submit">Edit</button>
                     </form>
                     
-                        <h3>{{ post['title'] }}</h3>
-                        <p>{{ post['post_description'] }}</p>
+                        <h3 name="post_title">{{ post['title'] }}</h3>
+                        <p name ="post_content">{{ post['post_description'] }}</p>
                         <div class="post-stats">
                             <!--span><i class="fas fa-eye">#</i>views</span>
                             <span><i class="fas fa-thumbs-up">#</i>likes</span>
