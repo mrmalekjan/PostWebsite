@@ -113,3 +113,31 @@ body {
 .profile-name-style {
     color: white;
 }
+
+.post-action-buttons-container {
+    display: flex; /* Use flexbox to align buttons in a row */
+    justify-content: space-between; /* Space the buttons evenly */
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Ensure the container takes the full width */
+}
+
+/* Styling for the action buttons */
+.post-action-button {
+    width:max-content;
+    object-fit: cover;
+    flex: 1; /* Make buttons take equal space */
+    padding: 10px 15px; /* Add some padding for better appearance */
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    background-color: transparent; /* No background color initially */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    text-align: center; /* Center text inside the button */
+}
+
+.post-action-button:hover {
+    background-color: #f5a623; /* Change background color on hover */
+    color: #fff; /* Change text color on hover */
+}

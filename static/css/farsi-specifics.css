@@ -75,3 +75,17 @@
     unicode-bidi: isolate;
     direction: rtl;
 }
+
+.post-card {
+    unicode-bidi: isolate;
+    direction: rtl;
+    text-align: right;
+    align-items: right;
+}
+
+.posts_by_class {
+    unicode-bidi: isolate;
+    direction: rtl;
+    text-align: right;
+    align-items: right;  
+}

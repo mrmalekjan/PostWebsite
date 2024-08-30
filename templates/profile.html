@@ -12,7 +12,11 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='css/templatemo-style.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static',filename='css/home.css') }}" /> 
     <link rel="stylesheet" href="{{ url_for('static',filename='css/comment-section.css') }}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/mini-post.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}" />
+    {% if translations['language']=="fa" %}
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/farsi-specifics.css') }}" /> 
+    {% endif %}
 </head>
 <body style="padding-top: 90px;">
     {% include 'top-nav-bar.html' %}
@@ -25,7 +29,7 @@
             <img src="#" alt="Profile Photo">
         </div-->
         <div class="profile-info">
-            <h1 class="profile-name-style">{{  user.username }}</h1>
+            <h1 class="profile-name-style">{{ user.username }}</h1>
             <p>{{ bio }}</p>
             <!--div class="profile-stats">
                 <span><b>#</b> Posts</span>
@@ -36,37 +40,40 @@
     </div>
 
     <div class="content">
-        <h2 >Posts by {{ user }}</h2>
+        <h2 class="posts_by_class">{{translations['posts_by']}} {{ user }}</h2>
         <div class="post-grid">
             {% for post in user_posts %}
-
                 <div class="post-card">
                     <img src="{{post.image}}" alt="Post Image">
                     <div class="post-info">
-                        <a href="{{ url_for('delete_post', post_id=post.id) }}">
-                            <button>Delete</button>
-                        </a>
-                        <a href="{{ url_for('edit_post', post_id=post.id) }}">
-                            <button >Edit</button>
-                        </a>
                         <h3>{{ post['title'] }}</h3>
                         <p>{{ post['post_description'] }}</p>
-                        <div class="post-stats">
-                            <!--span><i class="fas fa-eye">#</i>views</span>
-                            <span><i class="fas fa-thumbs-up">#</i>likes</span>
-                            <span><i class="fas fa-thumbs-down">#</i>dislikes</span-->
-                            <span><i class="fas fa-comment-alt"> </i> {{post['comments']|length}}</span>
-                        </div>
+                        <p class="mini-post-text">{{post.content}}</p>
+                    </div>
+                
+                    <!-- Updated actions container -->
+                    <div class="post-action-buttons-container">
+                        <a href="{{ url_for('delete_post', post_id=post.id) }} " onclick="return confirmDelete()">
+                            <button class="post-action-button">{{translations['delete']}}</button>
+                        </a>
+                        <a href="{{ url_for('edit_post', post_id=post.id) }}">
+                            <button class="post-action-button">{{translations['edit']}}</button>
+                        </a>
                     </div>
                 </div>
             {% endfor %}
         </div>
     </div>
-    <p style="text-align: center;">{{user_specs.comments|length}}</p>
 
     {% include 'tm-footer.html' %}
 
     <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script>
+        function confirmDelete() {
+        return confirm('Are you sure you want to delete the post?');
+        }
+    </script>
+    
 </body>
 </html>

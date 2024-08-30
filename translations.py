@@ -35,7 +35,11 @@ translations = {
         'wrong_username': 'Invalid username, please try again.',
         'logout_before_signup': 'First you need to log out to sign up',
         'username_alredy taken': 'This username is alredy taken',
-        'congrats_account_created': 'Congratulations! Your account has been created succssefully'
+        'congrats_account_created': 'Congratulations! Your account has been created succssefully',
+        'sure_wanna_delete': 'Are you sure you want to delete the post?',
+        'posts_by': 'Posts by',
+        'delete': 'Delete',
+        'edit': 'Edit'
     },
     'fa': {
         'language': 'fa',
@@ -72,7 +76,10 @@ translations = {
         'wrong_password': 'رمز وارد شده اشتباه است، لطفاً دوباره امتحان کنید',
         'wrong_username': 'نام کاربری وارد شده اشتباه است، لطفاً دوباره امتحان کنید',
         'logout_before_signup': 'لطفاً قبل از ثبت‌نام مجدد، از سایت خارج شوید',
-        'congrats_account_created': 'تبریک! حساب کاربری شما با موفقیت ایجاد شد'
-
+        'congrats_account_created': 'تبریک! حساب کاربری شما با موفقیت ایجاد شد',
+        'sure_wanna_delete': 'آیا مطمئن هستید که می‌خواهید این مطلب را پاک کنید؟',
+        'posts_by': 'مطالب',
+        'delete': 'حذف',
+        'edit': 'ویرایش'
     }
 }
