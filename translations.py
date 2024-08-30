@@ -20,7 +20,22 @@ translations = {
         'username': 'Username',
         'password': 'Password',
         'dont_have_account': 'Do not have an account?, ',
-        'please_signup': 'Signup'
+        'please_signup': 'Signup',
+        'signup': 'Signup',
+        'have_an_account': 'Already have an account?, ',
+        'please_login': 'please login',
+        'need_to_login': 'You need to login first!',
+        'login_to_create': 'You need to be logged in to create a post.',
+        'login_first': 'Please login first!',
+        'you_logged_out': 'You have been logged out',
+        'created_successfully': 'Post created successfully',
+        'already_logged_in': 'You are already logged in!',
+        'login_successful': 'Login successful!',
+        'wrong_password': 'Invalid credentials, please try again.',
+        'wrong_username': 'Invalid username, please try again.',
+        'logout_before_signup': 'First you need to log out to sign up',
+        'username_alredy taken': 'This username is alredy taken',
+        'congrats_account_created': 'Congratulations! Your account has been created succssefully'
     },
     'fa': {
         'language': 'fa',
@@ -43,6 +58,21 @@ translations = {
         'username': 'نام کاربری',
         'password': 'رمز عبور',
         'dont_have_account': 'کاربر جدید هستید؟، ',
-        'please_signup': 'لطفاً ثبت‌نام کنید'
+        'please_signup': 'لطفاً ثبت‌نام کنید',
+        'signup': 'ثبت‌نام',
+        'have_an_account': 'قبلاً ثبت‌نام کرده‌اید؟، ',
+        'please_login': 'لطفاً وارد شوید',
+        'need_to_login': 'لطفاً ابتدا وارد شوید',
+        'login_to_create': 'برای ارسال مطلب، لازم است که ابتدا وارد سایت شوید.',
+        'login_first': 'لطفاً ابتدا وارد شوید!',
+        'you_logged_out': 'شما با موفقیت خارج شدید',
+        'created_successfully': 'مطلب با موفقیت ارسال شد',
+        'already_logged_in': 'شما قبلاً وارد شده‌اید',
+        'login_successful': 'شما با موفقیت وارد شدید',
+        'wrong_password': 'رمز وارد شده اشتباه است، لطفاً دوباره امتحان کنید',
+        'wrong_username': 'نام کاربری وارد شده اشتباه است، لطفاً دوباره امتحان کنید',
+        'logout_before_signup': 'لطفاً قبل از ثبت‌نام مجدد، از سایت خارج شوید',
+        'congrats_account_created': 'تبریک! حساب کاربری شما با موفقیت ایجاد شد'
+
     }
 }

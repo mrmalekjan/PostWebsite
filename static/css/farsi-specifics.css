@@ -70,3 +70,8 @@
     text-align: right;
     align-items: right;
 }
+
+.custom-alert {
+    unicode-bidi: isolate;
+    direction: rtl;
+}
