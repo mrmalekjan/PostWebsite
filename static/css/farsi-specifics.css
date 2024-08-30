@@ -1,8 +1,77 @@
 .tm-section-title {
     font-size: 2rem;
+    margin-right: 20px; 
     margin-bottom: 40px;
     padding: 10px;
     color: #fff;
     align-items: right;
     text-align: right;
+    unicode-bidi: isolate;
+    direction: rtl;
+}
+
+.tm-post-item {
+    align-items: right;
+    text-align: right;
+    unicode-bidi: isolate;
+    direction: rtl;
+}
+
+.nav-link {
+    unicode-bidi: isolate;
+    direction: rtl;
+}
+
+.comment-section-container {
+    align-items: right;
+    text-align: right;
+    unicode-bidi: isolate;
+    direction: rtl;
+}
+
+.comment {
+    align-items: right;
+    text-align: right;
+    unicode-bidi: isolate;
+    direction: rtl;
+}
+
+.post-header {
+    align-items: right;
+    text-align: right;
+    unicode-bidi: isolate;
+    direction: rtl;
+}
+
+.post-text {
+    align-items: right;
+    text-align: right;
+    unicode-bidi: isolate;
+    direction: rtl;
+}
+
+.post-create-container {
+    align-items: right;
+    text-align: right;
+    unicode-bidi: isolate;
+    direction: rtl;
+}
+
+.tm-block-title {
+    unicode-bidi: isolate;
+    direction: rtl;
+}
+
+.tm-login-form {
+    text-align: right;
+}
+
+.farsi-please-signup {
+    text-align: right;
+    align-items: right;
+}
+
+.custom-alert {
+    unicode-bidi: isolate;
+    direction: rtl;
 }

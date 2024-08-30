@@ -93,6 +93,9 @@ class Comment(db.Model):
 @app.before_request
 def create_tables():
     db.create_all()
+    if not "language" in session:
+        session["language"] = 'fa'
+
 
 
 
@@ -110,7 +113,7 @@ def create_post():
         user_id = session.get('user_id')
 
         if not user_id:
-            flash('You need to be logged in to create a post.')
+            flash(translations[session['language']]['login_to_create']) 
             return redirect(url_for('login'))
 
         if image and image.filename != '':  # Check if an image was uploaded
@@ -124,11 +127,11 @@ def create_post():
         db.session.add(new_post)
         db.session.commit()
 
-        flash("post created successfully")
+        flash(translations[session['language']]['created_successfully']) 
         return redirect(url_for('home'))
 
     return render_template('post-create.html',user=session['username'], user_id = session['user_id'],
-                           translations=translations)
+                           translations=translations[session["language"]])
 
 @app.route("/all_posts")
 def show_all_posts() :
@@ -167,7 +170,7 @@ def detail_post(post_id):
 
     #return render_template('post.html', user=user, post=post,comments = comments)
     return render_template('post.html', user=session['username'], user_id = session['user_id'], post=post,comments = comments,
-                           translations=translations)
+                           translations=translations[session["language"]])
 
 @app.route('/set_language/<lang>')
 def set_language(lang):
@@ -177,14 +180,6 @@ def set_language(lang):
 @app.route("/")
 @app.route("/home")
 def home():
-    if "username" not in session :
-        flash("Please Login!")
-        return redirect(url_for('login'))
-    
-    if not "language" in session:
-        session["language"] = 'en'
-        
-    lang=session["language"]
 
     if "username" in session :
 
@@ -193,14 +188,19 @@ def home():
         posts = Post.query.all()
 
         return render_template("home.html",user_id= user_id,user = username,posts=posts,
-                                translations=translations[lang], lang=lang)
+                                translations=translations[session["language"]], lang=session["language"])
+
+
+    else :
+        flash(translations[session['language']]['login_first'])  
+        return redirect(url_for("login"))
 
 
 @app.route("/login",methods = ['POST','GET'])
 def login () :
 
     if "username" in session:
-        flash("You Are Already Logged In!")
+        flash(translations[session['language']]['already_logged_in']) 
         return redirect(url_for("home"))
 
     if request.method == "POST" and "sign_in" in request.form:
@@ -219,30 +219,30 @@ def login () :
                 session['user_id'] = user.id  # Store user_id in session
                 session['username'] = user.username
                 user.set_auth_true()
-                flash("Login successful!")
+                flash(translations[session['language']]['login_successful']) 
                 return redirect(url_for("home"))
             else:
                 print("Password comparison failed")  # Debugging
-                flash("Invalid credentials, please try again.")
+                flash(translations[session['language']]['wrong_password']) 
         else:
             print("User not found")  # Debugging
-            flash("Invalid username, please try again.")
+            flash(translations[session['language']]['wrong_username']) 
 
-    return render_template("login.html")
+    return render_template("login.html", translations=translations[session["language"]])
 
 
 
 @app.route("/sign-up",methods = ["POST","GET"])
 def signup() :
     if "user_id" in session :
-        flash("first you need to log out to sign up")
+        flash(translations[session['language']]['logout_before_signup']) 
         return redirect(url_for('home'))
 
     if request.method == 'POST' and "sign_up" in request.form :
 
         username = request.form['username']
         if User.query.filter_by(username=username).first() :
-            flash("this username is alredy taken","info")
+            flash(translations[session['language']]['username_alredy taken'],"info") 
             return redirect(url_for("signup"))
         password = request.form['password']
         # hashed_password = generate_password_hash(password, method='pbkdf2:sha256', salt_length=16)
@@ -255,15 +255,16 @@ def signup() :
         session["user_id"] = new_user.id
         new_user.set_auth_true()
 
-        flash(F"congratulations your account has been created User : {username}")
+        flash(translations[session['language']]['congrats_account_created']) 
         return redirect(url_for("home"))
     else : 
-        return render_template("signup.html")
+        return render_template("signup.html", translations=translations[session["language"]])
 
 @app.route("/profile", methods=['POST' , 'GET'])
 def profile() :
     if "username" not in session :
-        flash("you need to login first")
+        flash(translations[session["language"]]['need_to_login'])
+
         return redirect(url_for('login'))
     
     else :
@@ -271,10 +272,8 @@ def profile() :
         user = User.query.filter_by(id = user_id)
         user_post = Post.query.filter_by(user_id = user_id)
 
-
-
-
-    return render_template("profile.html" , user = session['username'], translations=translations, user_specs=user , user_posts = user_post)
+        return render_template("profile.html" , user = session['username'], translations=translations[session["language"]],
+                                user_specs=user , user_posts = user_post)
 
 
 @app.route("/logout/<pk>")
@@ -290,7 +289,7 @@ def logout(pk) :
     session.pop("username",None)
     session.pop("user_id",None)
 
-    flash("You have been logged out","info")
+    flash(translations[session["language"]]['you_logged_out'],"info") 
     return redirect(url_for("login"))
 
 @app.route('/post/delete/<int:post_id>', methods=['POST'])

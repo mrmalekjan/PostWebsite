@@ -3,12 +3,9 @@
     <div class="tm-post-item">
         <img src="{{post.image}}" alt="post 1" class="img-fluid cover-image">
         <h3 class="tm-post-title mb-0">{{post.title}}</h3>
-        <div class="mini-post-stats">
-            
-        </div>
-        <div class="media">
+        <div class="media farsi-alignment">
             <div class="mini-post-stats">
-                <p>by <a href="#" c><b>{{post.user.username}}</b></a>
+                <p>{{translations['sent_by']}} <a href="#" c><b>{{post.user.username}}</b></a>
             </div>
         </div>
         <p class="mini-post-text">{{post.content}}</p>

@@ -1,8 +1,27 @@
 <nav class="navbar navbar-expand-xl fixed-top ">
     <div class="container h-100">
-        <a class="navbar-brand" href="{{url_for('home')}}">
+        {% if translations['language']=='en' %}
+            <a class="navbar-brand" href="{{url_for('home')}}">
                 <img class="home-icon" src="{{ url_for('static', filename='img/logo.png') }}"></img>
-        </a>
+            </a>
+        {% else %}
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    {% if user %}
+                    <a class="nav-link d-block" href="{{url_for('logout',pk=user_id)}}">
+                        {{user}}, <b>{{translations['logout']}}</b>
+                    </a>
+                    {% else: %}
+                    <!--a class="nav-link d-block" href="login">
+                        <b>Login</b>
+                    </a-->
+                    <a class="btn btn-primary login-btn" href="{{url_for('login')}}">
+                        <i class="fas fa-sign-in-alt"></i> <b>{{translations['login']}}</b>
+                    </a>
+                    {% endif %}
+                </li>
+            </ul>
+        {% endif %}
         <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars tm-nav-icon"></i>
@@ -47,22 +66,28 @@
                     </a>
                 </li>
             </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    {% if user %}
-                    <a class="nav-link d-block" href="{{url_for('logout',pk=user_id)}}">
-                        {{user}}, <b>{{translations['logout']}}</b>
-                    </a>
-                    {% else: %}
-                    <!--a class="nav-link d-block" href="login">
-                        <b>Login</b>
-                    </a-->
-                    <a class="btn btn-primary login-btn" href="{{url_for('login')}}">
-                        <i class="fas fa-sign-in-alt"></i> <b>{{translations['login']}}</b>
-                    </a>
-                    {% endif %}
-                </li>
-            </ul>
+            {% if translations['language']=='fa' %}
+            <a class="navbar-brand" href="{{url_for('home')}}">
+                <img class="home-icon" src="{{ url_for('static', filename='img/logo.png') }}"></img>
+            </a>
+            {% else %}
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        {% if user %}
+                        <a class="nav-link d-block" href="{{url_for('logout',pk=user_id)}}">
+                            {{user}}, <b>{{translations['logout']}}</b>
+                        </a>
+                        {% else: %}
+                        <!--a class="nav-link d-block" href="login">
+                            <b>Login</b>
+                        </a-->
+                        <a class="btn btn-primary login-btn" href="{{url_for('login')}}">
+                            <i class="fas fa-sign-in-alt"></i> <b>{{translations['login']}}</b>
+                        </a>
+                        {% endif %}
+                    </li>
+                </ul>
+            {% endif %}
         </div>
     </div>
 </nav>
