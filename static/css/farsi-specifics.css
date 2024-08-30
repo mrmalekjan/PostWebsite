@@ -21,3 +21,52 @@
     unicode-bidi: isolate;
     direction: rtl;
 }
+
+.comment-section-container {
+    align-items: right;
+    text-align: right;
+    unicode-bidi: isolate;
+    direction: rtl;
+}
+
+.comment {
+    align-items: right;
+    text-align: right;
+    unicode-bidi: isolate;
+    direction: rtl;
+}
+
+.post-header {
+    align-items: right;
+    text-align: right;
+    unicode-bidi: isolate;
+    direction: rtl;
+}
+
+.post-text {
+    align-items: right;
+    text-align: right;
+    unicode-bidi: isolate;
+    direction: rtl;
+}
+
+.post-create-container {
+    align-items: right;
+    text-align: right;
+    unicode-bidi: isolate;
+    direction: rtl;
+}
+
+.tm-block-title {
+    unicode-bidi: isolate;
+    direction: rtl;
+}
+
+.tm-login-form {
+    text-align: right;
+}
+
+.farsi-please-signup {
+    text-align: right;
+    align-items: right;
+}

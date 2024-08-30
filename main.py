@@ -224,7 +224,7 @@ def login () :
             print("User not found")  # Debugging
             flash("Invalid username, please try again.")
 
-    return render_template("login.html")
+    return render_template("login.html", translations=translations[session["language"]])
 
 
 
@@ -254,7 +254,7 @@ def signup() :
         flash(F"congratulations your account has been created User : {username}")
         return redirect(url_for("home"))
     else : 
-        return render_template("signup.html")
+        return render_template("signup.html", translations=translations[session["language"]])
 
 @app.route("/profile")
 def profile() :

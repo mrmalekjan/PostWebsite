@@ -12,50 +12,46 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static',filename='css/templatemo-style.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static',filename='css/home.css') }}" />
+    {% if translations['language']=="fa" %}
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/farsi-specifics.css') }}" /> 
+    {% endif %}
 </head>
 
-<body id="createPostPage">
+<body id="createPostPage" style="padding-top: 90px;">
     {% include 'top-nav-bar.html' %}
 
     <section class="tm-post-create">
         <div class="container">
             <div class="row">
-                <h2 class="tm-section-title mb-0">Create a New Post</h2>
+                <div class="col-12">
+                    <h2 class="tm-section-title mb-0">{{translations['create_new_post']}}</h2>
+                </div>
             </div>
             <div class="post-create-container">
                 <form method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">
-                        <label for="post_title">Title:</label>
+                        <label for="post_title">{{translations['title']}}</label>
                         <textarea name="post_title" id="post_title" class="form-control" rows="1" required></textarea>
                     </div>
                     
                     <div class="form-group">
-                        <label for="post_img">Upload Image:</label>
+                        <label for="post_img">{{translations['upload_image']}}</label>
                         <input type="file" name="post_img" id="post_img" class="form-control-file" >
                     </div>
 
                     <div class="form-group">
-                        <label for="post_description">Post Description:</label>
+                        <label for="post_description">{{translations['post_description']}}</label>
                         <textarea name="post_description" id="post_description" class="form-control" rows="4" required></textarea>
                     </div>
 
-                    <button name="post_submit" type="submit" class="btn btn-primary">Create Post</button>
+                    <button name="post_submit" type="submit" class="btn btn-primary">{{translations['create_post']}}</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="tm-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <p class="text-white">Copyright &copy; 2018 All rights reserved. Design: <a href="https://templatemo.com" class="tm-footer-link">Template Mo</a></p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    {% include 'tm-footer.html' %}
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
