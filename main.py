@@ -1,6 +1,7 @@
 
 from flask import Flask,render_template,redirect,request,session,flash,url_for
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from werkzeug.security import generate_password_hash,check_password_hash
 from werkzeug.utils import secure_filename
 import secrets
@@ -21,6 +22,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+migrate = Migrate(app, db)
 # User table with one-to-many relationship with Post and Comment
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
