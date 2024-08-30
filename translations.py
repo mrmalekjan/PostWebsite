@@ -39,7 +39,9 @@ translations = {
         'sure_wanna_delete': 'Are you sure you want to delete the post?',
         'posts_by': 'Posts by',
         'delete': 'Delete',
-        'edit': 'Edit'
+        'edit': 'Edit',
+        'edit_post': 'Edit Post',
+        'current_image': 'Current Image:'
     },
     'fa': {
         'language': 'fa',
@@ -80,6 +82,8 @@ translations = {
         'sure_wanna_delete': 'آیا مطمئن هستید که می‌خواهید این مطلب را پاک کنید؟',
         'posts_by': 'مطالب',
         'delete': 'حذف',
-        'edit': 'ویرایش'
+        'edit': 'ویرایش',
+        'edit_post': 'ویرایش مطلب',
+        'current_image': 'عکس فعلی:'
     }
 }

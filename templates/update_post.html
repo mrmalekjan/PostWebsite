@@ -1,44 +1,66 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Post</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Post - MyChat</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/post.css') }}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/fontawesome.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/templatemo-style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/home.css') }}" />
+    {% if translations['language']=="fa" %}
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/farsi-specifics.css') }}" /> 
+    {% endif %}
 </head>
-<body>
-    <div class="form-container">
-        <h1>Edit Post</h1>
-        <form method="POST" enctype="multipart/form-data">
-            <!-- Title Field -->
-            <div>
-                <label for="title">Title</label><br>
-                <input type="text" id="title" name="title" value="{{ post.title }}" size="40" required>
-            </div>
 
-            <!-- Content Field -->
-            <div>
-                <label for="content">Content</label><br>
-                <textarea id="content" name="content" cols="40" rows="5" required>{{ post.content }}</textarea>
-            </div>
+<body id="createPostPage" style="padding-top: 90px;">
+    {% include 'top-nav-bar.html' %}
 
-            <!-- Display current image if it exists -->
-            {% if post.image_file %}
-            <div>
-                <label>Current Image:</label><br>
-                <img src="{{ url_for('static', filename='images/' + post.image_file) }}" alt="Current Image" width="150px">
+    <section class="tm-post-create">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="tm-section-title mb-0">{{translations['edit_post']}}</h2>
+                </div>
             </div>
-            {% endif %}
+            <div class="post-create-container">
+                <form method="POST" enctype="multipart/form-data">
 
-            <!-- File input for uploading a new image -->
-            <div>
-                <label for="image">Upload New Image</label><br>
-                <input type="file" id="image" name="image" accept="image/*">
+                    <div class="form-group">
+                        <label for="post_title">{{translations['title']}}</label>
+                        <textarea id="title" name="title" class="form-control" rows="1" required>{{ post.title }}</textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="post_img">{{translations['upload_image']}}</label>
+                        <input type="file" id="image" name="image" accept="image/*" class="form-control-file" >
+                        <div>
+                            <label>{{translations['current_image']}}</label><br>
+                            <img src="{{url_for('static', filename=post.image.replace('static/', ''))}}" alt="Current Image" width="150px">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="post_description">{{translations['post_description']}}</label>
+                        <textarea id="content" name="content" class="form-control" rows="4" required>{{ post.content }}</textarea>
+                    </div>
+
+                    <button name="post_submit" type="submit" class="btn btn-primary">{{translations['create_post']}}</button>
+                </form>
             </div>
+        </div>
+    </section>
 
-            <!-- Submit Button -->
-            <button type="submit">Update Post</button>
-        </form>
-    </div>
+    {% include 'tm-footer.html' %}
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/tooplate-scripts.js"></script>
 </body>
+
 </html>

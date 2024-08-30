@@ -276,7 +276,7 @@ def profile() :
         user_post = Post.query.filter_by(user_id = user_id)
 
         return render_template("profile.html" , user = session['username'], translations=translations[session["language"]],
-                                user_specs=user , user_posts = user_post)
+                                user_specs=user , user_posts = user_post, user_id = session['user_id'])
 
 
 @app.route("/logout/<pk>")
@@ -351,8 +351,9 @@ def update_post(post_id):
         flash('Post updated successfully!', 'success')
         return redirect(url_for('profile'))
 
-    return render_template('update_post.html', post=post)
+    #return render_template('update_post.html', post=post)
 
-    #return render_template('update_post.html',translations=translations[session["language"]], post=post)
+    return render_template('update_post.html',translations=translations[session["language"]], post=post,
+                            user_id= session['user_id'], user = session['username'])
 if __name__ == '__main__':
     app.run(debug=True)
