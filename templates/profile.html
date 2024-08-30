@@ -60,15 +60,19 @@
                         <p>{{ post['post_description'] }}</p>
                         <p class="mini-post-text">{{post.content}}</p>
                     </div>
-                
+
                     <!-- Updated actions container -->
                     <div class="post-action-buttons-container">
-                        <a href="{{ url_for('delete_post', post_id=post.id) }} " onclick="return confirmDelete()">
-                            <button class="post-action-button">{{translations['delete']}}</button>
-                        </a>
-                        <a href="{{ url_for('edit_post', post_id=post.id) }}">
-                            <button class="post-action-button">{{translations['edit']}}</button>
-                        </a>
+                        <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST">
+                        <span onclick="return confirmDelete()"> </span>
+                            <button class="post-action-button" name = "post_delete" type="submit">{{translations['delete']}}</button>
+
+                    </form>
+                    <form action="{{ url_for('update_post', post_id=post.id) }}" method="GET">
+                        <span>
+                            <button class="post-action-button" name="edit_post" type="submit">{{translations['edit']}}</button>
+                        </span>
+                    </form>
                     </div>
                 </div>
             {% endfor %}

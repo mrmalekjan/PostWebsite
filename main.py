@@ -349,7 +349,7 @@ def update_post(post_id):
         # Commit changes to the database
         db.session.commit()
         flash('Post updated successfully!', 'success')
-        return redirect(url_for('detail_post', post_id=post.id))
+        return redirect(url_for('profile'))
 
     return render_template('update_post.html', post=post)
 
