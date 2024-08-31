@@ -23,7 +23,7 @@ translations = {
         'please_signup': 'Signup',
         'signup': 'Signup',
         'have_an_account': 'Already have an account?, ',
-        'please_login': 'please login',
+        'please_login': 'Please login',
         'need_to_login': 'You need to login first!',
         'login_to_create': 'You need to be logged in to create a post.',
         'login_first': 'Please login first!',
@@ -58,7 +58,9 @@ translations = {
         'current_username_wrong': 'Current username not found.',
         'password_changed_successfully': 'Password successfully changed!',
         'incorrect_username_password': 'Incorrect username or password.',
-        'change_password': 'Change Username'
+        'change_password': 'Change Password',
+        'not_supported_format': 'This file format is not supported only jpeg,jpg,png is accepted',
+        'not_correct_username': 'Your current username is not correct'
     },
     'fa': {
         'language': 'fa',
@@ -118,6 +120,8 @@ translations = {
         'current_username_wrong': 'نام کاربری وارد شده یافت نشد!',
         'password_changed_successfully': 'رمز عبور با موفقیت تغییر کرد!',
         'incorrect_username_password': 'نام کاربری یا رمز عبور اشتباه است.',
-        'change_password': 'تغییر رمز عبور'
+        'change_password': 'تغییر رمز عبور', 
+        'not_supported_format': 'فرمت فایل دریافتی مجاز نیست. تنها فایل‌های با فرمت .jpg، .png، .gif، .jpeg قابل قبول هستند',
+        'not_correct_username': 'نام کاربری فعلی شما نادرست است'
     }
 }

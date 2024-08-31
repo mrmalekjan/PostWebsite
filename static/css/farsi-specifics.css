@@ -93,5 +93,10 @@
 .username-change-container {
     text-align: right;
     align-items: right;
-    padding 0 20px;
+    /*padding: 0 20px;*/
+}
+
+.wrong-format-alert {
+    unicode-bidi: isolate;
+    text-align: right;
 }

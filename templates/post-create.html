@@ -38,18 +38,19 @@
                     <div class="form-group">
                         <label for="post_img">{{translations['upload_image']}}</label>
                         <input type="file" name="post_img" id="post_img" class="form-control-file" >
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                <div class="custom-alert wrong-format-alert">
+                                <ul class="flashes">
+                                    {% for message in messages %}
+                                    <li style="font-size: small;">{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                                </div>
+                            {% endif %}
+                        {% endwith %}
                     </div>
-                    {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        <div class="custom-alert">
-                        <ul class="flashes">
-                            {% for message in messages %}
-                            <li>{{ message }}</li>
-                            {% endfor %}
-                        </ul>
-                        </div>
-                    {% endif %}
-                {% endwith %}
+                    
                     <div class="form-group">
                         <label for="post_description">{{translations['post_description']}}</label>
                         <textarea name="post_description" id="post_description" class="form-control" rows="4" required></textarea>
@@ -66,6 +67,20 @@
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/tooplate-scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const alertBox = document.querySelector('.custom-alert');
+            if (alertBox) {
+                setTimeout(() => {
+                    alertBox.classList.add('fade-out');
+                }, 500);  // Start fading after 5 seconds
+    
+                setTimeout(() => {
+                    alertBox.style.display = 'none';
+                }, 1500);  // Completely hide after 6 seconds (1s fade-out duration)
+            }
+        });
+    </script>
 </body>
 
 </html>

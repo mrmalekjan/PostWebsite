@@ -67,9 +67,10 @@
 
     <div class="content">
         <h2 class="posts_by_class">{{translations['posts_by']}} {{ user }}</h2>
-        <div class="post-grid">
+        <div  class="post-grid">
             {% for post in user_posts %}
-                <div class="post-card">
+            <a style="all: unset; color:white;" href="{{url_for('detail_post',post_id=post.id)}}" c>
+                <div href="{{url_for('detail_post',post_id=post.id)}}" class="post-card">
                     <img src="{{post.image}}" alt="Post Image">
                     <div class="post-info">
                         <h3>{{ post['title'] }}</h3>
@@ -91,6 +92,7 @@
                     </form>
                     </div>
                 </div>
+            </a>
             {% endfor %}
         </div>
     </div>
@@ -121,6 +123,7 @@
             }
         });
     </script>
+    
     
 </body>
 </html>

@@ -125,7 +125,7 @@ def create_post():
                 image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
                 image.save(image_path)
             else:
-                flash("this file format is not supported only jpeg,jpg,png is accepted")
+                flash(translations[session['language']]['not_supported_format']) 
                 return redirect(url_for('create_post'))
         else:
             image_path = DEFAULT_IMAGE_PATH  # Use default image if no image was uploaded
@@ -144,7 +144,7 @@ def create_post():
 @app.route('/post/<int:post_id>', methods = ['POST' , 'GET'])
 def detail_post(post_id):
     if "username" not in session:
-        flash("Please Login!")
+        flash(translations[session['language']]['please_login']) 
         return redirect(url_for("login"))
     
     post = Post.query.get_or_404(post_id)
@@ -340,7 +340,7 @@ def update_post(post_id):
                     file.save(image_path)
                     post.image = image_path  # Update the image path in the database
                 else:
-                    flash("this file format is not supported only jpeg,jpg,png is accepted")
+                    flash(translations[session['language']]['not_supported_format']) 
                     return(redirect(url_for('update_post',post_id = post.id)))
         # Commit changes to the database
         db.session.commit()
@@ -368,7 +368,7 @@ def change_username():
 
         #ensure that the authenticated user is doing the precdure
         if current_username != session['username'] :
-            flash("your current username is not correct")
+            flash(translations[session['language']]['not_correct_username']) 
             return redirect(url_for('change_username'))
         else:
         # Find user by current username
@@ -377,7 +377,7 @@ def change_username():
         if user:
             # Check if new username is not already taken
             if User.query.filter_by(username=new_username).first():
-                flash('username_already_taken', 'error') 
+                flash(translations[session['language']]['username_already_taken'], 'error') 
             else:
                 user.username = new_username
                 db.session.commit()
@@ -407,7 +407,7 @@ def change_password():
 
         #ensure that the authenticated user is doing the precdure        
         if current_username != session['username'] :
-            flash("your current username is not correct")
+            flash(translations[session['language']]['not_correct_username'])
             return redirect(url_for('change_password'))
         else:
             # Find user by username
