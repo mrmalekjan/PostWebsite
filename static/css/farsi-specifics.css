@@ -89,3 +89,9 @@
     text-align: right;
     align-items: right;  
 }
+
+.username-change-container {
+    text-align: right;
+    align-items: right;
+    padding 0 20px;
+}

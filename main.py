@@ -239,7 +239,7 @@ def signup() :
 
         username = request.form['username']
         if User.query.filter_by(username=username).first() :
-            flash(translations[session['language']]['username_alredy taken'],"info") 
+            flash(translations[session['language']]['username_already_taken'],"info") 
             return redirect(url_for("signup"))
         password = request.form['password']
         # hashed_password = generate_password_hash(password, method='pbkdf2:sha256', salt_length=16)
@@ -293,12 +293,12 @@ def logout(pk) :
 def delete_post(post_id):
     post = Post.query.get_or_404(post_id)
     if post.author.id != session.get('user_id'):
-        flash('You are not authorized to delete this post')
+        flash(translations[session["language"]]['not_authorized_delete']) 
         return redirect(url_for('profile'))
 
     db.session.delete(post)
     db.session.commit()
-    flash('Post deleted successfully!')
+    flash(translations[session["language"]]['post_deleted_successfully']) 
 
     return redirect(url_for('profile'))
 
@@ -307,7 +307,7 @@ def update_post(post_id):
     post = Post.query.get_or_404(post_id)
     print(post.image)
     if post.author.id != session.get('user_id'):
-        flash('You are not authorized to update this post')
+        flash(translations[session["language"]]['not_authorized_update']) 
         return redirect(url_for('profile'))
 
     if request.method == 'POST':
@@ -344,7 +344,7 @@ def update_post(post_id):
                     return(redirect(url_for('update_post',post_id = post.id)))
         # Commit changes to the database
         db.session.commit()
-        flash('Post updated successfully!', 'success')
+        flash(translations[session["language"]]['post_updated_successfully'], 'success') 
         return redirect(url_for('profile'))
 
     #return render_template('update_post.html', post=post)
@@ -377,17 +377,18 @@ def change_username():
         if user:
             # Check if new username is not already taken
             if User.query.filter_by(username=new_username).first():
-                flash('Username already taken. Please choose a different username.', 'error')
+                flash('username_already_taken', 'error') 
             else:
                 user.username = new_username
                 db.session.commit()
                 session["username"] = user.username
-                flash('Username successfully changed!', 'success')
+                flash(translations[session["language"]]['username_changed_successfully'], 'success') 
                 return redirect(url_for('profile'))  # Redirect to a user profile page
         else:
-            flash('Current username not found.', 'error')
+            flash(translations[session["language"]]['current_username_wrong'], 'error') 
 
-    return render_template('change_username.html')
+    return render_template('change_username.html',translations=translations[session["language"]],
+                            user_id= session['user_id'], user = session['username'])
 
 
 # Route to change password
@@ -415,12 +416,13 @@ def change_password():
         if user and check_password_hash(user._password, current_password):
             user.password = new_password  # Password setter will hash the new password
             db.session.commit()
-            flash('Password successfully changed!', 'success')
+            flash(translations[session["language"]]['password_changed_successfully'], 'success') 
             return redirect(url_for('profile'))  # Redirect to a user profile page
         else:
-            flash('Incorrect username or password.', 'error')
+            flash(translations[session["language"]]['incorrect_username_password'], 'error') 
 
-    return render_template('change_password.html')
+    return render_template('change_password.html',translations=translations[session["language"]],
+                            user_id= session['user_id'], user = session['username'])
 
 
 
