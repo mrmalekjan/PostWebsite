@@ -351,6 +351,11 @@ def update_post(post_id):
 # Route to change username
 @app.route('/change_username', methods=['GET', 'POST'])
 def change_username():
+
+    if "username" not in session :
+        flash(translations[session["language"]]['need_to_login'])
+        return redirect(url_for('login'))
+
     if request.method == 'POST':
         current_username = request.form.get('current_username')
         new_username = request.form.get('new_username')
@@ -377,6 +382,10 @@ def change_username():
 # Route to change password
 @app.route('/change_password', methods=['GET', 'POST'])
 def change_password():
+    if "username" not in session :
+        flash(translations[session["language"]]['need_to_login'])
+        return redirect(url_for('login'))
+
     if request.method == 'POST':
         current_username = request.form.get('username')
         current_password = request.form.get('current_password')
