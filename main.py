@@ -345,5 +345,57 @@ def update_post(post_id):
 
     return render_template('update_post.html',translations=translations[session["language"]], post=post,
                             user_id= session['user_id'], user = session['username'])
+
+
+
+# Route to change username
+@app.route('/change_username', methods=['GET', 'POST'])
+def change_username():
+    if request.method == 'POST':
+        current_username = request.form.get('current_username')
+        new_username = request.form.get('new_username')
+
+        # Find user by current username
+        user = User.query.filter_by(username=current_username).first()
+
+        if user:
+            # Check if new username is not already taken
+            if User.query.filter_by(username=new_username).first():
+                flash('Username already taken. Please choose a different username.', 'error')
+            else:
+                user.username = new_username
+                db.session.commit()
+                session["username"] = user.username
+                flash('Username successfully changed!', 'success')
+                return redirect(url_for('profile'))  # Redirect to a user profile page
+        else:
+            flash('Current username not found.', 'error')
+
+    return render_template('change_username.html')
+
+
+# Route to change password
+@app.route('/change_password', methods=['GET', 'POST'])
+def change_password():
+    if request.method == 'POST':
+        current_username = request.form.get('username')
+        current_password = request.form.get('current_password')
+        new_password = request.form.get('new_password')
+
+        # Find user by username
+        user = User.query.filter_by(username=current_username).first()
+
+        if user and check_password_hash(user._password, current_password):
+            user.password = new_password  # Password setter will hash the new password
+            db.session.commit()
+            flash('Password successfully changed!', 'success')
+            return redirect(url_for('profile'))  # Redirect to a user profile page
+        else:
+            flash('Incorrect username or password.', 'error')
+
+    return render_template('change_password.html')
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)

@@ -79,6 +79,16 @@
         </div>
     </div>
 
+    <div class="profile-options">
+        <h2>Manage Your Account</h2>
+    
+        <!-- Link to change username -->
+        <a href="{{ url_for('change_username') }}" class="btn btn-primary">Change Username</a>
+    
+        <!-- Link to change password -->
+        <a href="{{ url_for('change_password') }}" class="btn btn-secondary">Change Password</a>
+    </div>
+    
     {% include 'tm-footer.html' %}
 
     <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
