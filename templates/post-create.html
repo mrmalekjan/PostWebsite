@@ -39,7 +39,17 @@
                         <label for="post_img">{{translations['upload_image']}}</label>
                         <input type="file" name="post_img" id="post_img" class="form-control-file" >
                     </div>
-
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="custom-alert">
+                        <ul class="flashes">
+                            {% for message in messages %}
+                            <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        </div>
+                    {% endif %}
+                {% endwith %}
                     <div class="form-group">
                         <label for="post_description">{{translations['post_description']}}</label>
                         <textarea name="post_description" id="post_description" class="form-control" rows="4" required></textarea>

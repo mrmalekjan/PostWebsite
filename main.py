@@ -21,11 +21,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-migrate = Migrate(app, db)
+
 # User table with one-to-many relationship with Post and Comment
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -119,10 +119,14 @@ def create_post():
             flash(translations[session['language']]['login_to_create']) 
             return redirect(url_for('login'))
 
-        if image and image.filename != '':  # Check if an image was uploaded
-            filename = secure_filename(image.filename)
-            image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            image.save(image_path)
+        if image and image.filename != '':
+            if allowed_file(image.filename):  # Check if an image was uploaded
+                filename = secure_filename(image.filename)
+                image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                image.save(image_path)
+            else:
+                flash("this file format is not supported only jpeg,jpg,png is accepted")
+                return redirect(url_for('create_post'))
         else:
             image_path = DEFAULT_IMAGE_PATH  # Use default image if no image was uploaded
 
@@ -335,7 +339,9 @@ def update_post(post_id):
                     image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
                     file.save(image_path)
                     post.image = image_path  # Update the image path in the database
-
+                else:
+                    flash("this file format is not supported only jpeg,jpg,png is accepted")
+                    return(redirect(url_for('update_post',post_id = post.id)))
         # Commit changes to the database
         db.session.commit()
         flash('Post updated successfully!', 'success')
@@ -360,8 +366,13 @@ def change_username():
         current_username = request.form.get('current_username')
         new_username = request.form.get('new_username')
 
+        #ensure that the authenticated user is doing the precdure
+        if current_username != session['username'] :
+            flash("your current username is not correct")
+            return redirect(url_for('change_username'))
+        else:
         # Find user by current username
-        user = User.query.filter_by(username=current_username).first()
+            user = User.query.filter_by(username=current_username).first()
 
         if user:
             # Check if new username is not already taken
@@ -385,14 +396,21 @@ def change_password():
     if "username" not in session :
         flash(translations[session["language"]]['need_to_login'])
         return redirect(url_for('login'))
+        #ensure that the authenticated user is doing the precdure
+
 
     if request.method == 'POST':
         current_username = request.form.get('username')
         current_password = request.form.get('current_password')
         new_password = request.form.get('new_password')
 
-        # Find user by username
-        user = User.query.filter_by(username=current_username).first()
+        #ensure that the authenticated user is doing the precdure        
+        if current_username != session['username'] :
+            flash("your current username is not correct")
+            return redirect(url_for('change_password'))
+        else:
+            # Find user by username
+            user = User.query.filter_by(username=current_username).first()
 
         if user and check_password_hash(user._password, current_password):
             user.password = new_password  # Password setter will hash the new password

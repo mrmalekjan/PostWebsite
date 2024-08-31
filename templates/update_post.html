@@ -44,7 +44,17 @@
                             <img src="{{url_for('static', filename=post.image.replace('static/', ''))}}" alt="Current Image" width="150px">
                         </div>
                     </div>
-
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="custom-alert">
+                        <ul class="flashes">
+                            {% for message in messages %}
+                            <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        </div>
+                    {% endif %}
+                {% endwith %}
                     <div class="form-group">
                         <label for="post_description">{{translations['post_description']}}</label>
                         <textarea id="content" name="content" class="form-control" rows="4" required>{{ post.content }}</textarea>
