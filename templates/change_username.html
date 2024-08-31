@@ -21,6 +21,18 @@
 <body style="padding-top: 90px;">
     {% include 'top-nav-bar.html' %}
 
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="custom-alert">
+            <ul class="flashes">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            </div>
+        {% endif %}
+    {% endwith %}
+
     <div class="container tm-mt-big tm-mb-big">
       <div class="row">
         <div class="col-12 mx-auto tm-login-col">
@@ -71,6 +83,20 @@
           $("#includePost").load("post.html"); 
         });
     </script> 
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const alertBox = document.querySelector('.custom-alert');
+          if (alertBox) {
+              setTimeout(() => {
+                  alertBox.classList.add('fade-out');
+              }, 500);
+  
+              setTimeout(() => {
+                  alertBox.style.display = 'none';
+              }, 1500);
+          }
+      });
+  </script>
 </body>
 
 </html>
