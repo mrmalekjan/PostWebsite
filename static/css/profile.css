@@ -141,3 +141,41 @@ body {
     background-color: #f5a623; /* Change background color on hover */
     color: #fff; /* Change text color on hover */
 }
+
+.profile-options {
+    align-items: center;
+    text-align: center;
+}
+
+.posts_by_class{
+    text-align: left;
+    align-items: left; 
+}
+
+/* -------------------------------------------------------------- */
+
+.button {
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    padding: 12px 24px; /* Increased padding */
+    font-size: 16px; /* Larger font size */
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .button.change-username {
+    background: linear-gradient(45deg, #FFB74D, #FFA726); /* Gradient background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .button.change-password {
+    background: linear-gradient(45deg, #FFB74D, #FFA726);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .button:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+  }
