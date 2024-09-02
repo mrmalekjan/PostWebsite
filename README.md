@@ -1,6 +1,6 @@
 # PostWebsite
 
-A web application designed to manage and display posts dynamically. 
+A web application designed to manage and display posts dynamically based on Flask. 
 
 ## Features
 
