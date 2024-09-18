@@ -193,7 +193,7 @@ def home():
         return redirect(url_for("login"))
 
 
-@app.route("/login",methods = ['POST','GET'])
+@app.route("/login/",methods = ['POST','GET'])
 def login () :
 
     if "username" in session:
